@@ -3,6 +3,7 @@ import React from "react";
 import { TabsStackScreenProps } from "../Navigation/TabsNavigation";
 import { headerStyl } from "../StylesComponent/HeadersStyle";
 import HeadersComponent from "../Components/HomeHeader/HeadersComponent";
+import SectionListContent from "../Components/HomeSectionList/SectionListContent";
 
 const HomeScreen = ({ navigation, route }: TabsStackScreenProps<"Home">) => {
   return (
@@ -16,6 +17,9 @@ const HomeScreen = ({ navigation, route }: TabsStackScreenProps<"Home">) => {
         <View style={headerStyl.homeHeader}>
           <HeadersComponent />
         </View>
+      </View>
+      <View>
+        <SectionListContent />
       </View>
     </View>
   );
