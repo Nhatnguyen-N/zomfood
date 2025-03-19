@@ -8,6 +8,7 @@ import { RootStackScreenProps } from "./RootNavigation";
 import CartScreen from "../Screens/CartScreen";
 import ProfileScreen from "../Screens/ProfileScreen";
 import Settings from "../Screens/Settings";
+import CustomTabBar from "./TabsComponents/CustomTabBar";
 export type TabsStackParams = {
   Home: undefined;
   Cart: undefined;
@@ -26,6 +27,7 @@ export type TabsStackScreenProps<T extends keyof TabsStackParams> =
 const TabsNavigator = () => {
   return (
     <TabsStack.Navigator
+      tabBar={(props) => <CustomTabBar {...props} />}
       screenOptions={{
         tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,

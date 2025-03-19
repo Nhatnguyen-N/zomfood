@@ -23,3 +23,12 @@ export interface fetchRestaurantParams {
     result: restaurantParams[];
   };
 }
+
+export interface filterTab {
+  _id: string;
+  title: string;
+}
+export interface menuFilterParams {
+  filterLabel: string;
+  tabList: filterTab[];
+}

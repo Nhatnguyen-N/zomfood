@@ -5,6 +5,7 @@ import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
+import BottomTabsAnimation from "./BottomTabsAnimation";
 
 export type RootStackParams = {
   TabsStack: NavigatorScreenParams<TabsStackParams>;
@@ -19,7 +20,7 @@ const RootNavigator = () => {
     <RootStack.Navigator>
       <RootStack.Screen
         name="TabsStack"
-        component={TabsNavigator}
+        component={BottomTabsAnimation}
         options={{
           headerShown: false,
         }}
