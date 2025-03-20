@@ -4,11 +4,23 @@ import { headerStyl } from "../../StylesComponent/HeadersStyle";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors, Sizes } from "../../StylesComponent/Constant";
 import { TouchableOpacity } from "react-native";
+import { useSharedContext } from "../../Context/SharedContext";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 type Props = {};
 
 const LocationHeader = (props: Props) => {
+  const { globallScrollY } = useSharedContext();
+  const animOpacity = useAnimatedStyle(() => {
+    const opacity = interpolate(globallScrollY.value, [0, 70], [1, 0]);
+    return {
+      opacity,
+    };
+  });
   return (
-    <View>
+    <Animated.View style={[animOpacity]}>
       <SafeAreaView />
       <View style={headerStyl.locationContainer}>
         <View style={headerStyl.locationContainer}>
@@ -33,7 +45,7 @@ const LocationHeader = (props: Props) => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

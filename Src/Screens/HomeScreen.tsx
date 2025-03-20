@@ -4,8 +4,26 @@ import { TabsStackScreenProps } from "../Navigation/TabsNavigation";
 import { headerStyl } from "../StylesComponent/HeadersStyle";
 import HeadersComponent from "../Components/HomeHeader/HeadersComponent";
 import SectionListContent from "../Components/HomeSectionList/SectionListContent";
+import { useSharedContext } from "../Context/SharedContext";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 
 const HomeScreen = ({ navigation, route }: TabsStackScreenProps<"Home">) => {
+  const { globallScrollY } = useSharedContext();
+  const scrollingUpAnim = useAnimatedStyle(() => {
+    const transY = interpolate(
+      globallScrollY.value,
+      [0, 50],
+      [0, -50],
+      Extrapolation.CLAMP
+    );
+    return {
+      transform: [{ translateY: transY }],
+    };
+  });
   return (
     <View style={headerStyl.homeContainer}>
       <SafeAreaView
@@ -13,14 +31,14 @@ const HomeScreen = ({ navigation, route }: TabsStackScreenProps<"Home">) => {
           paddingTop: Platform.OS === "android" ? 40 : 0,
         }}
       />
-      <View>
+      <Animated.View style={[scrollingUpAnim]}>
         <View style={headerStyl.homeHeader}>
           <HeadersComponent />
         </View>
-      </View>
-      <View>
+      </Animated.View>
+      <Animated.View style={[scrollingUpAnim]}>
         <SectionListContent />
-      </View>
+      </Animated.View>
     </View>
   );
 };
